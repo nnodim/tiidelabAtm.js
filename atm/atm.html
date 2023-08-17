@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let balance = 100000;
+        let userPin = 1234;
+        alert("Welcome to the ATM!");
+        let choice = prompt(`Select an operation: 
+1. Withdraw 
+2. Transfer 
+3. Check Balance`);
+
+        if (choice === "1") {
+            let amount = parseInt(prompt("Enter the amount to Withdraw:"));
+            let pin = parseInt(prompt('Enter your PIN:'));
+            if (pin === userPin) {
+                if (amount > 0 && amount <= balance) {
+                    alert("Please Take your money!");
+                    balance = balance - amount;
+                } else if (amount > balance) {
+                    alert("Insufficient balance!");
+                } else {
+                    alert("Amount must be greater than 0!");
+                }
+            } else {
+                alert("Invalid PIN!");
+            }
+        } else if (choice === "2") {
+            let accNo = prompt("Enter reciepient ACC number:");
+            let bank = prompt(`
+        Choose bank:
+        1. First Bank
+        2. Ecobank
+        `);
+            if (bank === "1") {
+                let amount = parseInt(prompt("Enter the amount to Transfer:"));
+                let pin = parseInt(prompt('Enter your PIN:'));
+                if (pin === userPin) {
+                    if (amount > 0 && amount <= balance) {
+                        alert("Transfer successful!");
+                        balance = balance - amount;
+                    } else if (amount > balance) {
+                        alert("Insufficient balance!");
+                    } else {
+                        alert("Amout must be greater than 0!");
+                    }
+                } else {
+                    alert("Invalid PIN!");
+                }
+            } else if (bank === "2") {
+                alert('Account not found!');
+            }
+
+        } else if (choice === "3") {
+            alert(`Balance: $${balance}`);
+        } else {
+            alert("Invalid choice!");
+        }
+    </script>
+</body>
+
+</html>
